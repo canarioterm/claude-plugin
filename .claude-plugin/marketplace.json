@@ -1,0 +1,13 @@
+{
+  "name": "canarioterm",
+  "owner": {
+    "name": "Raphael Amorim"
+  },
+  "plugins": [
+    {
+      "name": "canario",
+      "source": "./",
+      "description": "Control Canario terminals, panes and agents from Claude Code"
+    }
+  ]
+}

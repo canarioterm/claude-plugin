@@ -8,7 +8,7 @@ get blocked.
 
 ```
 /plugin marketplace add canarioterm/claude-plugin
-/plugin install canario@claude-plugin
+/plugin install canario@canarioterm
 ```
 
 The skill talks to the app through `canario-cli` and its control socket, and
