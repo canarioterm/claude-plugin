@@ -39,6 +39,9 @@ commands.
 "$CLI" wait --panel <id> --until blocked --timeout 300
 "$CLI" notify                            # ask for the user's attention
 "$CLI" install-cli                       # symlink as `canario` on PATH
+"$CLI" install-hooks                     # exact Claude Code state via hooks
+"$CLI" install-mcp                       # register canario as MCP tools
+
 ```
 
 `new --worktree` creates a git worktree on a fresh branch beside the
@@ -86,6 +89,18 @@ connection:
 Request keys mirror the CLI: `method`, `panel`, `terminal`, `direction`,
 `space`, `cwd`, `text`, `lines`, `worktree`, `until`, `timeout`. Errors
 come back as `{"error": "..."}`.
+
+Two additional surfaces exist and are usually better than raw sockets:
+
+- **MCP**: `canario-mcp` (same directory as the CLI) exposes every
+  command above as MCP tools (`canario_list`, `canario_send`, …);
+  `install-mcp` registers it with Claude Code. Prefer these tools over
+  shelling out when they are available in your session.
+- **`agent-event`** (`agent`, `event`, `panel`, `session`, `cwd`,
+  `message`, `detail`): how Claude Code hooks report lifecycle state;
+  wired by `install-hooks`, not meant to be called by agents. Shells
+  spawned by Canario carry `CANARIO_PANE_ID` — your own pane's id —
+  which those hooks use for exact attribution.
 
 ## Cautions
 
