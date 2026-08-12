@@ -36,6 +36,7 @@ commands.
 "$CLI" split [--down]                    # split the focused terminal
 "$CLI" new --space Work --cwd ~/api      # new terminal in a space
 "$CLI" new --worktree                    # new git worktree + terminal
+"$CLI" new --cwd ~/api --command "npm run dev"  # new terminal running a command
 "$CLI" wait --panel <id> --until blocked --timeout 300
 "$CLI" notify                            # ask for the user's attention
 "$CLI" install-cli                       # symlink as `canario` on PATH
@@ -48,6 +49,11 @@ commands.
 repository (`<repo>-worktrees/<branch>`) and opens a terminal in it, so
 parallel agents do not fight over one checkout. It prints
 `branch<TAB>path` before the panel id.
+
+`new --command CMD` spawns the fresh terminal's shell already running
+CMD (then drops into an interactive shell). Because it runs code, it
+clears the same one-per-run approval prompt as `send`; a denial creates
+no terminal.
 
 The first `send` of each app run asks the user to allow it, since any
 local process can reach the socket. Expect a prompt, and do not retry in
